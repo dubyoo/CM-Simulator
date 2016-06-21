@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
 from senddte import *
+from time import time
 
 if __name__ == '__main__':
 	file = open('config.dat')
 	file.next()
 	
+	t = time() - 1
 	line_no = 0
 	for line in file:
 		line_no += 1
@@ -24,4 +26,10 @@ if __name__ == '__main__':
 		param.GROUP_IP = list[4]
 		param.LEAVE_OR_JOIN = list[5]
 		
+		while time() - t < 0.5:
+			continue
+		t = time()
 		senddte(param)
+	
+	file.close()
+	
